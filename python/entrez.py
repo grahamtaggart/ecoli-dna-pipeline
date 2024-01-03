@@ -27,12 +27,12 @@ def download_genomic_data(accession_num, data_amount, output_dir, data_type):
         data_amount = min(int(data_amount), 5)  # Limit to 1 sequence for demonstration purposes
 
         try:
-            handle = Entrez.efetch(db='nuccore', id=accession_num, rettype=data_type, retmax=data_amount)
+            handle = Entrez.efetch(db='nucleotide', id=accession_num, rettype='gb', retmode='text', retmax=int(data_amount))
             data = handle.read()
-
+            
             os.makedirs(output_dir, exist_ok=True)
 
-            output_filename = f"{output_dir}/{accession_num}_{data_amount}.{data_type}"
+            output_filename = f"{output_dir}/{accession_num}_{data_amount}.fasta"
             with open(output_filename, 'w') as output_file:
                 output_file.write(data)
 
