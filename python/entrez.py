@@ -24,7 +24,7 @@ def search_for_organism(email, organism):
 
 def download_genomic_data(accession_num, data_amount, output_dir, data_type):
     if accession_num:
-        data_amount = min(int(data_amount), 1)  # Limit to 1 sequence for demonstration purposes
+        data_amount = min(int(data_amount), 5)  # Limit to 1 sequence for demonstration purposes
 
         try:
             handle = Entrez.efetch(db='nuccore', id=accession_num, rettype=data_type, retmax=data_amount)
@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--email', required=True, help='Your email address (required by NCBI)')
     parser.add_argument('--organism', required=True, help='Organism name to download data from')
-    parser.add_argument('--data-amount', default=1, help='Number of sequences to download (default: 1)')
+    parser.add_argument('--data-amount', default=5, help='Number of sequences to download (default: 5)')
     parser.add_argument('--output-dir', default='output', help='Output directory for downloaded data (default: output)')
     parser.add_argument('--data-type', default='fasta', choices=['fasta', 'gb'], help='Data type to download (fasta or gb, default: fasta)')
 
@@ -63,4 +63,3 @@ if __name__ == '__main__':
     accession_num = search_for_organism(args.email, args.organism)
     download_genomic_data(accession_num, args.data_amount, args.output_dir, args.data_type)
 
-    
