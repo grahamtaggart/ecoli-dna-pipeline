@@ -1,6 +1,7 @@
 #! /usr/bin/bash python
 
 from Bio import Entrez, SeqIO
+from io import StringIO
 #
 
 Entrez.email = 'graham.n.taggart.dut@gmail.com'
@@ -10,7 +11,8 @@ record1 = Entrez.read(handle1)
 print(record1['IdList'])
 id_list = record1['IdList']
 handle = Entrez.efetch(db='nucleotide', id=id_list, rettype='gb')
-recs = list(SeqIO.parse(handle, 'gb'))
+recs = handle.read()
+list(SeqIO.parse(StringIO(recs), 'gb'))
 handle.close()
 print(recs)
 for rec in recs:
