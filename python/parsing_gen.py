@@ -13,3 +13,5 @@ with Entrez.efetch(db='nucleotide', rettype='gb', retmode='text', id='6273291,62
                     seq_record.annotations["source"],
                 )
             )
+
+
