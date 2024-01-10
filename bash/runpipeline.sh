@@ -12,4 +12,4 @@ dataset_id=$2
 # Pass the output directory and dataset ID to each stage of the pipeline
 # 1
 python download_data.py $outdir $dataset_id
-python 
+python analyze_data.py $outdir $dataset_id
