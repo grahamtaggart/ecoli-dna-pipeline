@@ -22,3 +22,6 @@ def search_and_fetch_org_sequence(organism):
     print(sequence_record.seq[0:50] + '...')
 
 search_and_fetch_org_sequence('ecoli')
+
+def seq_analysis():
+    pass
