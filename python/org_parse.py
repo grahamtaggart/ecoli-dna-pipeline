@@ -25,8 +25,15 @@ def search_and_fetch_org(organism):
 
 # search_and_fetch_org('ecoli')
 
-def seq_analysis(function):
-    print(Counter(function.seq))
+def seq_analysis_gc(function):
+   nucleotide_counts = Counter(function.seq)
+   g_count = nucleotide_counts.get('G', 0)
+   c_count = nucleotide_counts.get('C', 0)
+   total_count = g_count + c_count
+    # 1 Calculate the percentage of G and C
+   if total_count > 0:
+        gc_percentage = (total_count / len(function.seq)) * 100
+        print(f"G/C Percentage: {gc_percentage:.2f}%")
     
 
-seq_analysis(search_and_fetch_org('ecoli'))
+seq_analysis_gc(search_and_fetch_org('ecoli'))
